@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Go + Gin Beginner Form</title>
+</head>
+<body>
+    <h1>Hey There!</h1>
+    <form id="helloForm">
+        <input type="text" id="name" placeholder="Enter your name" />
+        <button type="submit">Send</button>
+    </form>
+    <p id="response"></p>
+
+    <script>
+        const form = document.getElementById('helloForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const res = await fetch(`http://localhost:8080/hello?name=${name}`);
+            const data = await res.json();
+            document.getElementById('response').innerText = data.message;
+        });
+    </script>
+</body>
+</html>
